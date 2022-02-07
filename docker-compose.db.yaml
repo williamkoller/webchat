@@ -1,0 +1,20 @@
+version: '3'
+services:
+  webchat_db:
+    image: postgres:${POSTGRES_VERSION}
+    container_name: webchat_db
+    restart: always
+    tty: true
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+      PGDATA: ${DB_DATA}
+      POSTGRES_HOST: ${DB_HOST}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - db_volume:/var/lib/postgresl/data
+
+volumes:
+  db_volume:
